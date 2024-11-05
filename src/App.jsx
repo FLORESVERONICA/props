@@ -9,18 +9,25 @@ const App = () => {
     { id: 2, text: 'Llamar al médico', completed: true },
     { id: 3, text: 'Hacer ejercicio', completed: false }
   ]);
+  
+
+ const[maxId, setMaxID] = useState(tasks.length + 1)
+
+
   const addTask = (text) => {
+    
     const newTask = {
-      id: tasks.length + 1,
-      text: text,
+      id: maxId,
+      text,
       completed: false
     };
     setTasks([...tasks, newTask]);
+    setMaxID(maxId +1)
   };
   const deleteTask = (taskId) => {
     setTasks(tasks.filter(task => task.id !== taskId));
   };
-  const toggleTaskCompletion = (taskId) => { setTasks(task.map(task => task.id === taskId ? {
+  const toggleTaskCompletion = (taskId) => { setTasks(tasks.map(task => task.id === taskId ? {
     ...task, completed: !task.completed
   } : task ));
 };

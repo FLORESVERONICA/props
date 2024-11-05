@@ -1,17 +1,19 @@
 import { useState } from "react";
 
 const AddTaskForm = ({ addTask }) => {
-    const [text, setText] = useState('');
+    const [task, setText] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTask(text);
-        setText('');
+        if (!task.trim()) return;
+        addTask(task);
+        setTask('');
     };
     return (
         <form onSubmit={handleSubmit}>
             <input
             type='text'
-            value={text}
+            placeholder="introducr una nueva tarea"
+            value={task}
             onChange={(e) => setText(e.target.value)}/>
             <button type='submit'>Añadir Tarea</button>
         </form>
